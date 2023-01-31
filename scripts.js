@@ -1,5 +1,5 @@
 
-async function fetchWeather(url) {
+async function fetchHourlyWeather(url) {
     return fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -16,8 +16,23 @@ async function fetchWeather(url) {
         .catch(error => console.error('Error:', error))
 }
 
+
+
+async function fetchDailyWeather(url) {
+    return fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+
+        })
+        .catch(error => console.error('Error:', error))
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
-    (fetchWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&hourly=temperature_2m,relativehumidity_2m,winddirection_10m'));
+    fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&hourly=temperature_2m,relativehumidity_2m,winddirection_10m&timezone=CST');
+
+    fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
+
 });
 
 
