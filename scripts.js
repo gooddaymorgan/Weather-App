@@ -23,11 +23,17 @@ async function fetchDailyWeather(url) {
         .then(response => response.json())
         .then(data => {
             console.log(data)
+            let daily_html = "";
             for (let i = 0; i < data.daily.time.length; i++) {
-                console.log(`Day: ${data.daily.time[i]}`)
-                console.log(`Temperature high: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}`)
-                console.log(`temperature low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}`)
-                console.log(`Wind speed: ${data.daily.windspeed_10m_max[i]}${data.daily_units.windspeed_10m_max}`)
+
+                daily_html +=  `<div class="dailyWeatherCard">`
+                daily_html += `<p>Day: ${data.daily.time[i]}</p>`
+                daily_html += `<p>Temperature high: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
+                daily_html += `<p>Temperature low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
+                daily_html += `<p>Wind speed: ${data.daily.windspeed_10m_max[i]}${data.daily_units.windspeed_10m_max}</p>`
+                daily_html += `</div>`
+
+                updateDailyWeather(daily_html);
             }
 
 
@@ -62,15 +68,21 @@ function updateCurrentWeather(temperature, windspead, winddirection, time) {
     current_temp.innerHTML = `<p>Temperature: ${temperature}<p>`
 }
 
+function updateDailyWeather(html) {
+    const weekly_report = document.getElementById("weekly-report");
+
+    weekly_report.innerHTML = html
+}
+
 
 document.addEventListener("DOMContentLoaded", (event) => {
     fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
 
 
-    // fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
+    fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
 
 
-    // fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&hourly=temperature_2m,relativehumidity_2m,winddirection_10m&timezone=CST');
+    //  fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&hourly=temperature_2m,relativehumidity_2m,winddirection_10m&timezone=CST');
 });
 
 
