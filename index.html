@@ -1,15 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Untitled Weather App</title>
+    <!--Needs Name-->
+  </head>
+  <body style="margin:0px;">
+    <nav
+      class="topnav"
+      style="display: flex; background-color: cornflowerblue"
+      id="myTopnav"
+    >
+      <a href="#home" class="active">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Dropdown
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      <a href="#about">About</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()"
+        >&#9776;</a
+      >
+    </nav>
 
-<head>
-    <title>Weather App Project</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
-</head>
+    <!--Warning message-->
+    <div id="warning" class="warningBar">
+      <p></p>
+      <!--Append Warning message here-->
+    </div>
 
-<body>
-<h1>Weather App</h1>
+    <!--Weather info Display-->
+    <div style="background-color: red; display: flex">
+      <!--Needs flexbox-->
+      <div style="background-color: green; margin: 30px">
+        <p>City Name</p>
+        <p>Date</p>
+        <p>Temp</p>
+        <p>Description of Weather</p>
+      </div>
 
-</body>
+      <div style="background-color: yellow; margin: 30px">
+        <p>Bundle Up it's cold as shit!</p>
 
+        <!-- For CSS you only need one margin 40px-->
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            background-color: darkmagenta;
+            margin: 10px;
+          "
+        >
+          <p style="margin: 40px">Conditions</p>
+          <p style="margin: 40px">Humdity</p>
+          <p style="margin: 40px">Wind Speed</p>
+          <p style="margin: 40px">Wind Direction</p>
+        </div>
+      </div>
+    </div>
+
+    <!--Daily Vs Weekly Report !-->
+    <div style="background-color: blue">
+      <!--Hourly-->
+      <div id="Hourly-report" style="margin:30px; background-color: pink;">
+        <p>Hourly Report</p>
+        <p>City Name</p>
+        <p>Information</p>
+      </div>
+
+      <!--Weekly-->
+
+      <div id="weekly-report" style="display:flex; margin:30px; background-color: orange;">
+
+        <div>
+            <p>Monday</p>
+        </div>
+
+        <div>
+            <p>Tuesday</p>
+        </div>
+
+        <div>
+            <p>Wed</p>
+        </div>
+
+        <div>
+            <p>Thrus</p>
+        </div>
+
+        <div>
+            <p>Fri</p>
+        </div>
+
+        <div>
+            <p>sat</p>
+        </div>
+
+        <div>
+            <p>Sun</p>
+        </div>
+      </div>
+    </div>
+
+    <footer style="background-color: aqua;">
+        <p>Weather App Copyright </p>
+    </footer>
+
+
+  </body>
 </html>
