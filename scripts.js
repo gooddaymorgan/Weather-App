@@ -7,10 +7,10 @@ async function fetchHourlyWeather(url) {
 
             console.log(data.hourly.time.length)
             for (let i = 0; i < data.hourly.time.length; i++) {
-                console.log(`Time: ${data.hourly.time[i]} `)
-                console.log(`Temperature: ${data.hourly.temperature_2m[i]}`)
-                console.log(`Humidity: ${data.hourly.relativehumidity_2m[i]}`)
-                console.log(`Wind direction: ${data.hourly.winddirection_10m[i]}`)
+                console.log(`Time: ${data.hourly.time[i]}`)
+                console.log(`Temperature: ${data.hourly.temperature_2m[i]}${data.hourly_units.temperature_2m}`)
+                console.log(`Humidity: ${data.hourly.relativehumidity_2m[i]}${data.hourly_units.relativehumidity_2m}`)
+                console.log(`Wind direction: ${data.hourly.winddirection_10m[i]}${data.hourly_units.winddirection_10m}`)
             }
         })
         .catch(error => console.error('Error:', error))
