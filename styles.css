@@ -26,7 +26,7 @@ h2 {
 }
 
 .default-warning {
-    background-color: #000000;
+    background-color: #ea787856 ;
 }
 
 .freezing {
@@ -51,5 +51,3 @@ h2 {
 .hot-warning {
     background-color: #D7EF65;
 }
-
-
