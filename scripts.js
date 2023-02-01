@@ -3,7 +3,6 @@ async function fetchHourlyWeather(url) {
     return fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             let hourly_html = "";
             
             for (let i = 0; i <= 24; i++) {
@@ -14,33 +13,27 @@ async function fetchHourlyWeather(url) {
                 hourly_html += `<p>Wind direction: ${data.hourly.winddirection_10m[i]}${data.hourly_units.winddirection_10m}</p>`
                 hourly_html += `</div>`
             }
-
             updateHourlyWeather(hourly_html);
         })
         .catch(error => console.error('Error:', error))
 }
 
 
-
 async function fetchDailyWeather(url) {
     return fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             let daily_html = "";
-            for (let i = 0; i < data.daily.time.length; i++) {
 
-                daily_html +=  `<div class="dailyWeatherCard">`
+            for (let i = 0; i < data.daily.time.length; i++) {
+                daily_html += `<div class="dailyWeatherCard">`
                 daily_html += `<p>Day: ${data.daily.time[i]}</p>`
                 daily_html += `<p>Temperature high: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
                 daily_html += `<p>Temperature low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
                 daily_html += `<p>Wind speed: ${data.daily.windspeed_10m_max[i]}${data.daily_units.windspeed_10m_max}</p>`
                 daily_html += `</div>`
-
-                updateDailyWeather(daily_html);
             }
-
-
+            updateDailyWeather(daily_html);
         })
         .catch(error => console.error('Error:', error))
 }
@@ -49,10 +42,7 @@ async function fetchCurrentWeather(url) {
     return fetch(url)
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
-
             updateCurrentWeather(data.current_weather.temperature, data.current_weather.windspeed, data.current_weather.winddirection, data.current_weather.time)
-
         })
         .catch(error => console.error('Error:', error))
 }
@@ -65,11 +55,10 @@ function updateCurrentWeather(temperature, windspead, winddirection, time) {
     let current_humidity;
     let current_conditions;
 
-
-    current_date.innerHTML = `<p>Time: ${time}<p>`
-    current_windspeed.innerHTML = `<p>Wind speed: ${windspead}<p>`
-    current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}<p>`
-    current_temp.innerHTML = `<p>Temperature: ${temperature}<p>`
+    current_date.innerHTML = `<p>Time: ${time}</p>`
+    current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
+    current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
+    current_temp.innerHTML = `<p>Temperature: ${temperature}</p>`
 }
 
 function updateDailyWeather(html) {
