@@ -12,7 +12,7 @@ h2 {
 }
 
 .default {
-    background-color: red;
+    background-color: #434343;
     background-image: linear-gradient( #434343, #939393);
 }
 
@@ -22,7 +22,11 @@ h2 {
 }
 
 .default-accent{
-    color: #23E2FF;
+    color: #000000;
+}
+
+.default-warning {
+    background-color: #000000;
 }
 
 .freezing {
@@ -30,16 +34,22 @@ h2 {
 }
 
 .freezing-accent{
-    color:  #D7EF65;
+    color:  #23E2FF;
+}
+.freezing-warning {
+    background-color: #23E2FF;
 }
 
 .hot {
     background-image: linear-gradient( #F8912A, #F51C1C);    
 }
 
-
 .hot-accent {
-    color: #000000;
+    color: #D7EF65;
+}
+
+.hot-warning {
+    background-color: #D7EF65;
 }
 
 
