@@ -1,5 +1,14 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: bold;
 }
 
 .default {
