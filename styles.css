@@ -28,9 +28,6 @@ h2 {
 .freezing {
     background-image: linear-gradient( #182149, #234DA2);
 }
-.freezing-card {
-    background-color: #c5c5c536;
-}
 
 .freezing-accent{
     color:  #D7EF65;
@@ -40,9 +37,6 @@ h2 {
     background-image: linear-gradient( #F8912A, #F51C1C);    
 }
 
-.hot-card {
-    background-color: #c5c5c536;
-}
 
 .hot-accent {
     color: #000000;
