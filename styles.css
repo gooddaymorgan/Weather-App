@@ -18,7 +18,11 @@ h2 {
 
 .default-card {
     background-color: #c5c5c536;
-    
+    border-radius: 30px;
+}
+
+.default-accent{
+    color: #23E2FF;
 }
 
 .freezing {
@@ -28,6 +32,10 @@ h2 {
     background-color: #c5c5c536;
 }
 
+.freezing-accent{
+    color:  #D7EF65;
+}
+
 .hot {
     background-image: linear-gradient( #F8912A, #F51C1C);    
 }
@@ -35,4 +43,9 @@ h2 {
 .hot-card {
     background-color: #c5c5c536;
 }
+
+.hot-accent {
+    color: #000000;
+}
+
 
