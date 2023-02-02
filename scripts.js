@@ -74,29 +74,32 @@ async function fetchCurrentWeather(url) {
         .then(response => response.json())
         .then(data => {
             let relative_humidity;
+            let conditions_data;
             for (let i = 0; i <= 24; i++) {
                 if (data.hourly.time[i] == data.current_weather.time){
                     relative_humidity = data.hourly.relativehumidity_2m[i];
                 }
             }
-            updateCurrentWeather(data.current_weather.temperature, data.current_weather.windspeed, data.current_weather.winddirection, data.current_weather.time, relative_humidity)
+            conditions_data = weather_codes[data.current_weather.weathercode]
+            updateCurrentWeather(data.current_weather.temperature, data.current_weather.windspeed, data.current_weather.winddirection, data.current_weather.time, relative_humidity, conditions_data)
         })
         .catch(error => console.error('Error:', error))
 }
 
-function updateCurrentWeather(temperature, windspead, winddirection, time, humidity) {
+function updateCurrentWeather(temperature, windspead, winddirection, time, humidity, conditions) {
     const current_date = document.getElementById("current_date");
     const current_temp = document.getElementById("current_temp");
     const current_windspeed = document.getElementById("current_windspeed");
     const current_winddirection = document.getElementById("current_winddirection");
     let current_humidity = document.getElementById("current_humidity");
-    let current_conditions;
+    let current_conditions = document.getElementById("current_conditions");
 
     current_date.innerHTML = `<p>Time: ${time}</p>`
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
     current_temp.innerHTML = `<p>Temperature: ${temperature}</p>`
     current_humidity.innerHTML = `<p>Humidity: ${humidity}</p>`
+    current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
 }
 
 function updateDailyWeather(html) {
