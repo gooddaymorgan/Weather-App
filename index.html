@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Untitled Weather App</title>
     <script src="scripts.js"></script>
+    <link href="styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <!--Needs Name-->
   </head>
-  <body style="margin:0px;">
+  <body class="default" style="margin:0px;">
     <nav
       class="topnav"
-      style="display: flex; background-color: cornflowerblue"
+      style="display: flex"
       id="myTopnav"
     >
       <a href="#home" class="active">Home</a>
@@ -43,16 +47,16 @@
     </div>
 
     <!--Weather info Display-->
-    <div style="background-color: red; display: flex">
+    <div class="default-card" style="display: flex">
       <!--Needs flexbox-->
-      <div style="background-color: green; margin: 30px">
+      <div style="margin: 30px">
         <p id="current_city">City Name</p>
         <p id="current_date">Date</p>
         <p id="current_temp">Temp</p>
         <p>Description of Weather</p>
       </div>
 
-      <div style="background-color: yellow; margin: 30px">
+      <div style="margin: 30px">
         <p>Bundle Up it's cold as shit!</p>
 
         <!-- For CSS you only need one margin 40px-->
@@ -60,7 +64,6 @@
           style="
             display: flex;
             flex-wrap: wrap;
-            background-color: darkmagenta;
             margin: 10px;
           "
         >
@@ -73,9 +76,9 @@
     </div>
 
     <!--Daily Vs Weekly Report !-->
-    <div style="background-color: blue">
+    <div>
       <!--Hourly-->
-      <div id="Hourly-report" style="margin:30px; background-color: pink;">
+      <div class="default-card" id="Hourly-report" style="margin:30px;">
         <p>Hourly Report</p>
         <p>City Name</p>
         <p>Information</p>
@@ -83,7 +86,7 @@
 
       <!--Weekly-->
 
-      <div id="weekly-report" style="display:flex; margin:30px; background-color: orange;">
+      <div class="default-card" id="weekly-report" style="display:flex; margin:30px;">
 
         <div>
             <p>Monday</p>
@@ -115,7 +118,7 @@
       </div>
     </div>
 
-    <footer style="background-color: aqua;">
+    <footer>
         <p>Weather App Copyright </p>
     </footer>
 
