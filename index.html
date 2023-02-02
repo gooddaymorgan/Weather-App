@@ -50,31 +50,30 @@
 
       <!--Image-->
       <!--TEMPORARY NEEDS REPLACEMENT-->
+      <div style ="width: 200px; background-color: aliceblue;">
+        <img src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/" alt="weather cloud">
+      </div>
 
       <!--City Block-->
-      <div style="margin: 30px">
+      <div style="background-color: blue;">
         <p id="current_city">City Name</p>
         <p id="current_date">Date</p>
         <p id="current_temp">Temp</p>
         <p>Description of Weather</p>
       </div>
 
-      <div style="margin: 30px">
+      <div>
         <p>Bundle Up it's cold as shit!</p>
 
         <!-- For CSS you only need one margin 40px-->
-        <div
-          style="
-            display: flex;
-            flex-wrap: wrap;
-            margin: 10px;
-          "
-        >
-          <p id="current_conditions" style="margin: 40px">Conditions</p>
-          <p id="current_humidity" style="margin: 40px">Humdity</p>
-          <p id="current_windspeed" style="margin: 40px">Wind Speed</p>
-          <p id="current_winddirection" style="margin: 40px">Wind Direction</p>
-        </div>
+        <ul class="conditions">
+          <li id="current_conditions">Conditions</li>
+          <li id="current_humidity">Humdity</li>
+        </ul>
+        <ul class ="conditions">
+          <li id="current_windspeed">Wind Speed</li>
+          <li id="current_winddirection">Wind Direction</li>
+        </ul>
       </div>
     </div>
 
