@@ -17,15 +17,18 @@
       <a href="#news">News</a>
       <a href="#contact">Contact</a>
       <div class="dropdown">
-        <button class="dropbtn">
-          Dropdown
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
+        <p><label id="city_select">City:</label>
+          <select name="Payment_menu" id="payment" onchange="createCreditForm();">
+              <option value="select">- Select City -</option>
+              <option value="regina">Regina</option>
+              <option value="saskatoon">Saskatoon</option>
+              <option value="prince_albert">Prince Albert</option>
+              <option value="moose_jaw">Moose Jaw</option>
+              <option value="swift_current">Swift Current</option>
+              <option value="north_battleford">North Battleford</option>
+          </select>
+      </p>
+      
       </div>
       <a href="#about">About</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()"
