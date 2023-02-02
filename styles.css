@@ -1,0 +1,53 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.default {
+    background-color: #434343;
+    background-image: linear-gradient( #434343, #939393);
+}
+
+.default-card {
+    background-color: #c5c5c536;
+    border-radius: 30px;
+}
+
+.default-accent{
+    color: #000000;
+}
+
+.default-warning {
+    background-color: #ea787856 ;
+}
+
+.freezing {
+    background-image: linear-gradient( #182149, #234DA2);
+}
+
+.freezing-accent{
+    color:  #23E2FF;
+}
+.freezing-warning {
+    background-color: #23E2FF;
+}
+
+.hot {
+    background-image: linear-gradient( #F8912A, #F51C1C);    
+}
+
+.hot-accent {
+    color: #D7EF65;
+}
+
+.hot-warning {
+    background-color: #D7EF65;
+}
