@@ -9,11 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    <!--Needs Name-->
   </head>
+
   <body class="default">
+
+    <!--Navigation-->
     <nav class="topnav" id="myTopnav">
       <li>F*ck The Weather</li>
+
+      <!--Dropdown -->
       <li class="dropdown">
         <label id="city_select"></label>
           <select name="city_menu" id="city" onchange="changeCityWeather();" class="select">
@@ -26,21 +30,25 @@
               <option value="north_battleford">North Battleford</option>
           </select>
       </li>
-      <!--
-      <li>Information</li>-->
+      <!--<li>Information button</li>-->
+
+      <!--Mobile-->
       <li href="javascript:void(0);" class="icon" onclick="myFunction()"
         >&#9776;</li>
     </nav>
 
     <!--Warning message-->
     <div id="warning" class="warningBar">
-      <p></p>
       <!--Append Warning message here-->
+      <p>Warning</p>
     </div>
 
     <!--Weather info Display-->
-    <div class="default-card" style="display: flex">
-      <!--Needs flexbox-->
+
+    <!--Wrapper-->
+    <div class="default-card default-card-flex">
+
+      <!--City Block-->
       <div style="margin: 30px">
         <p id="current_city">City Name</p>
         <p id="current_date">Date</p>
