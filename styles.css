@@ -1,6 +1,28 @@
 body {
     font-family: 'Quicksand', sans-serif;
     color: white;
+    margin:0px;
+}
+
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 10px;
+    background-color: #434343;
+}
+
+.topnav li {
+    padding: 10px;
+}
+
+.select {
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 20px;
+    padding: 5px;
+    width: 150%;
+    color: #5f1515;
 }
 
 h1 {

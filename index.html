@@ -11,18 +11,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <!--Needs Name-->
   </head>
-  <body class="default" style="margin:0px;">
-    <nav
-      class="topnav"
-      style="display: flex"
-      id="myTopnav"
-    >
-      <a href="#home" class="active">Home</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <div class="dropdown">
-        <p><label id="city_select">City:</label>
-          <select name="city_menu" id="city" onchange="changeCityWeather();">
+  <body class="default">
+    <nav class="topnav" id="myTopnav">
+      <li>F*ck The Weather</li>
+      <li class="dropdown">
+        <label id="city_select"></label>
+          <select name="city_menu" id="city" onchange="changeCityWeather();" class="select">
               <option value="select">- Select City -</option>
               <option value="regina">Regina</option>
               <option value="saskatoon">Saskatoon</option>
@@ -31,13 +25,11 @@
               <option value="swift_current">Swift Current</option>
               <option value="north_battleford">North Battleford</option>
           </select>
-      </p>
-      
-      </div>
-      <a href="#about">About</a>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()"
-        >&#9776;</a
-      >
+      </li>
+      <!--
+      <li>Information</li>-->
+      <li href="javascript:void(0);" class="icon" onclick="myFunction()"
+        >&#9776;</li>
     </nav>
 
     <!--Warning message-->
