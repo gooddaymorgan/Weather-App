@@ -42,23 +42,30 @@ async function fetchCurrentWeather(url) {
     return fetch(url)
         .then(response => response.json())
         .then(data => {
-            updateCurrentWeather(data.current_weather.temperature, data.current_weather.windspeed, data.current_weather.winddirection, data.current_weather.time)
+            let relative_humidity;
+            for (let i = 0; i <= 24; i++) {
+                if (data.hourly.time[i] == data.current_weather.time){
+                    relative_humidity = data.hourly.relativehumidity_2m[i];
+                }
+            }
+            updateCurrentWeather(data.current_weather.temperature, data.current_weather.windspeed, data.current_weather.winddirection, data.current_weather.time, relative_humidity)
         })
         .catch(error => console.error('Error:', error))
 }
 
-function updateCurrentWeather(temperature, windspead, winddirection, time) {
+function updateCurrentWeather(temperature, windspead, winddirection, time, humidity) {
     const current_date = document.getElementById("current_date");
     const current_temp = document.getElementById("current_temp");
     const current_windspeed = document.getElementById("current_windspeed");
     const current_winddirection = document.getElementById("current_winddirection");
-    let current_humidity;
+    let current_humidity = document.getElementById("current_humidity");
     let current_conditions;
 
     current_date.innerHTML = `<p>Time: ${time}</p>`
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
     current_temp.innerHTML = `<p>Temperature: ${temperature}</p>`
+    current_humidity.innerHTML = `<p>Humidity: ${humidity}</p>`
 }
 
 function updateDailyWeather(html) {
@@ -75,7 +82,7 @@ function updateHourlyWeather(html) {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
+    fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
 
 
     fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.45&longitude=-104.62&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
