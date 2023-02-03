@@ -59,20 +59,6 @@ async function fetchHourlyWeather(url) {
                 hourly_html += `</div>`
             }
 
-            
-            // <tr>
-            //   <th>Time</th>
-            //   <th>Temp</th>
-            //   <th>Weather Conditions</th>
-            //   <th>How it Feels</th>
-            // </tr>
-    
-            // <tr>
-            //   <td>9:00am</td>
-            //   <td>31'</td>
-            //   <td>Snowy</td>
-            //   <td>Fucking Cold</td>
-            // </tr>
             //runs updateHourlyWeather function with the html added the previous for loop
             updateHourlyWeather(hourly_html,date);
         })
