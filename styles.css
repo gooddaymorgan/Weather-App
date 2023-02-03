@@ -19,6 +19,22 @@
         list-style: circle;
         background-color: #182149;
     }
+
+    /* Weekly */
+
+    .weekly {
+        text-align: center;
+    }
+    
+    .weekly-grid{
+        display: flex;
+        justify-content: space-around;
+    
+    }
+    
+    .weekly-grid div:not(:first-child) {
+        border-left: 1px solid white;
+    }
     
   }
 
@@ -59,6 +75,22 @@
         font-weight: 100;
         margin-left: 10%;
     }
+
+        /* Weekly */
+
+        .weekly {
+            text-align: center;
+        }
+        
+        .weekly-grid{
+            display: flex;
+            justify-content: space-around;
+        
+        }
+        
+        .weekly-grid div:not(:first-child) {
+            border-left: 1px solid white;
+        }
     
   }
 
@@ -87,6 +119,24 @@
         margin: 0%;
     }
 
+        /* Weekly */
+
+        .weekly {
+            text-align: center;
+        }
+        
+        .weekly-grid{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        
+        }
+        
+        .weekly-grid div:not(:first-child) {
+            border-top: 1px solid white;
+            border-left: 0px;
+        }
+
   }
 
 
@@ -94,6 +144,12 @@ body {
     font-family: 'Quicksand', sans-serif;
     color: white;
     margin:0px;
+}
+
+footer {
+    text-align: center;
+    background-color: #000000;
+    margin: 0%;
 }
 
 .bold {
@@ -109,9 +165,7 @@ body {
     Margin: 20px;
 
 }
-.hourly {
-    text-align: center;
-}
+
 .topnav {
     display: flex;
     justify-content: space-between;
