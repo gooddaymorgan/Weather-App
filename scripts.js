@@ -88,6 +88,12 @@ async function fetchCurrentWeather(url) {
         .then(data => {
             let relative_humidity;
             let conditions_data;
+
+            let time_and_date = data.current_weather.time;
+            //shortens time_and_date to only include the date not the time
+            let date = time_and_date.slice(0,10)
+            //shortens time_and_date to only include the time not the date
+            let time = time_and_date.slice(11)    
             //loops through 24 hours of data
             for (let i = 0; i <= 24; i++) {
                 //checks if hour in loop is the same as the current time. If it is sets the corresponding relative humidity as relative_humidity so it can be displayed in the current humidity section
@@ -98,12 +104,12 @@ async function fetchCurrentWeather(url) {
             // sets the conditions as the value of the weather code object that corresponds with the weather code received from the API
             conditions_data = weather_codes[data.current_weather.weathercode]
             //runs the updateCurrentWeather function using data from the api and the variables made above
-            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant), data.current_weather.time, (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data)
+            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time)
         })
         .catch(error => console.error('Error:', error))
 }
 //this function updates the HTML to display the current weather data
-function updateCurrentWeather(temperature, windspead, winddirection, time, humidity, conditions) {
+function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time) {
     // gets the elements that will be displaying the data from the API
     const current_date = document.getElementById("current_date");
     const current_temp = document.getElementById("current_temp");
@@ -112,7 +118,10 @@ function updateCurrentWeather(temperature, windspead, winddirection, time, humid
     let current_humidity = document.getElementById("current_humidity");
     let current_conditions = document.getElementById("current_conditions");
     //changes the inner html of the elements grabbed above to display the weather data grabbed in the fetchCurrentWeather function
-    current_date.innerHTML = `<p>Time: ${time}</p>`
+    current_date.innerHTML = `
+    <p>${time}</p>
+    <p>${date}</p>
+    `
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
     current_temp.innerHTML = `<p>${temperature}</p>`
