@@ -63,11 +63,8 @@ async function fetchDailyWeather(url) {
             for (let i = 0; i < data.daily.time.length; i++) {
                 //creates a div with the data for each day
                 daily_html += `<div class="dailyWeatherCard">`
-                daily_html += `<p>Day: ${data.daily.time[i]}</p>`
-                daily_html += `<p>Temperature high: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
-                daily_html += `<p>Temperature low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
-                daily_html += `<p>Wind speed: ${data.daily.windspeed_10m_max[i]}${data.daily_units.windspeed_10m_max}</p>`
-                daily_html += `<p>Conditions: ${weather_codes[data.daily.weathercode[i]]}</p>`
+                daily_html += `<p>${data.daily.time[i]}</p>`
+                daily_html += `<img></img>`
                 daily_html += `</div>`
             }
             //runs updateDailyWeather function with the html added the previous for loop
