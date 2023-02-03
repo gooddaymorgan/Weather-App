@@ -137,6 +137,8 @@
             border-left: 0px;
         }
 
+
+
   }
 
 
@@ -148,8 +150,9 @@ body {
 
 footer {
     text-align: center;
-    background-color: #000000;
     margin: 0%;
+    padding: 20px;
+    font-size: 0.9rem;
 }
 
 .bold {
@@ -174,6 +177,26 @@ footer {
     padding: 20px;
     background-color: #434343;
     box-shadow: 5px 3px 3px rgba(1, 1, 1, 0.326);
+}
+
+.hourly {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+/*Table canaot go lower than 375px */
+.hourly table {
+    text-align: left;
+    width: 100%;
+}
+
+.hourly table, th, td{
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+
 }
 
 .select {
