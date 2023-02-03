@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Untitled Weather App</title>
     <script src="scripts.js"></script>
     <link href="styles.css" rel="stylesheet" />
@@ -50,20 +50,23 @@
 
       <!--Image-->
       <!--TEMPORARY NEEDS REPLACEMENT-->
-      <div style ="width: 200px; background-color: aliceblue;">
-        <img src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/" alt="weather cloud">
+
+      <div class="responsive">
+        <div style ="width: 200px; background-color: aliceblue;">
+          <img src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/" alt="weather cloud">
+        </div>
+
+        <!--City Block-->
+        <div>
+          <h2 id="current_city">City Name</h2>
+          <p id="current_date">Date</p>
+          <p id="current_temp">Temp</p>
+          <p>Description of Weather</p>
+        </div>
       </div>
 
-      <!--City Block-->
-      <div style="background-color: blue;">
-        <p id="current_city">City Name</p>
-        <p id="current_date">Date</p>
-        <p id="current_temp">Temp</p>
-        <p>Description of Weather</p>
-      </div>
-
-      <div>
-        <p>Bundle Up it's cold as shit!</p>
+      <div class="help">
+        <h2>Bundle Up it's cold as shit!</h2>
 
         <!-- For CSS you only need one margin 40px-->
         <ul class="conditions">
