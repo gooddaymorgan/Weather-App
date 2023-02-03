@@ -39,10 +39,8 @@
       </li>
       <!--<li>Information button</li>-->
 
-      <!--Mobile-->
-      <li href="javascript:void(0);" class="icon" onclick="myFunction()">
-        &#9776;
-      </li>
+   
+  
     </nav>
 
     <!--Warning message-->
@@ -90,9 +88,9 @@
 
       <!--Weekly-->
 
-      <div class="default-card weekly-grid" card-style weekly >
+      <div class="default-card card-style weekly"  >
         <h2>Weekly Forecast</h2>
-        <div id="weekly-report" style="display:flex; margin:30px;">
+        <div id="weekly-report" style="display:flex; margin:30px;" class="weekly-grid">
         <div>
           <p>Mon</p>
           <img
@@ -159,27 +157,20 @@
     </div>
 
       <!--Hourly-->
-      <div class="default-card" style="margin:30px;">
+      <!-- <div class="default-card" style="margin:30px;">
         <h2>Hourly</h2>
-        <p id="hourly_date"></p>
+        
         <div id="Hourly-report"></div>
-      </div>
+      </div> -->
 
     </div>
 
-    <footer>
-        <p>Weather App Copyright </p>
-    </footer>
 
-    <div class="default-card card-style hourly" id="weekly-report">
+    <div class="default-card card-style hourly" >
       <h2>Hourly Forecast</h2>
-      <p>Hourly Forecast Time</p>
-      
-      <div>
-        <p>GRAPH</p>
-      </div>
+      <p id="hourly_date"></p>
 
-      <div>
+      <div id="Hourly-report">
       <table>
         <tr>
           <th>Time</th>
