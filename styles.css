@@ -133,7 +133,7 @@
 
   .hourly td , th {
     
-    padding: 20px;
+    padding: 10px;
   }
 
 
@@ -142,8 +142,11 @@
 @media only screen and (max-width: 600px) {
   /* For Mobile */
 
+    .topnav li{
+        font-size: 0.9rem;
+    }
   h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0px;
   }
   p , ul{
@@ -157,7 +160,7 @@
 
   .card-style {
     border-radius: 30px;
-    padding: 100px;
+    padding: 50px;
     margin: 40px;
   } 
 
@@ -175,6 +178,7 @@
   .city-card-flex {
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex-wrap: nowrap;
     padding: 30px;
   }
@@ -207,20 +211,14 @@
     border-left: 0px;
   }
 
-  /*Hourly*/
+  /* For Mobile */
 
-  .hourly table,
-th,
-td {
-  text-align: center;
-  padding: 0px;
-}
+  .hourly table {
+    font-size: 0.7rem;
+  }
 
-.hourly {
-    font-size: 1rem;
-    padding: 30px;
-    text-align: center;
-    margin-top: 20px;
+  .topnav {
+    
   }
 
 }
@@ -261,21 +259,20 @@ ul {
   padding: 20px;
   background-color: #434343;
   box-shadow: 5px 3px 3px rgba(1, 1, 1, 0.326);
-  margin-left: 20px;
-  margin-right: 20px;
 }
 
 .hourly {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .hourly td , th{
     border-bottom: 1px solid white;
 }
 
-/*Table canaot go lower than 375px */
+/*Table cannot go lower than 375px */
 .hourly table {
   width: 100%;
 }
