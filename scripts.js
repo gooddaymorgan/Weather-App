@@ -37,6 +37,9 @@ async function fetchHourlyWeather(url) {
         .then(data => {
             let hourly_html = "";
             let how_it_feels;
+            //slices the date to the time isn't included
+            let date = data.hourly.time[1].slice(0,10)
+            console.log(date)
             //loops through the data 24 times (for 24 hours of info)
             for (let i = 0; i <= 24; i++) {
                 //runs function howItFeels with the temperature for that hour to get how it feels
@@ -53,7 +56,7 @@ async function fetchHourlyWeather(url) {
                 hourly_html += `</div>`
             }
             //runs updateHourlyWeather function with the html added the previous for loop
-            updateHourlyWeather(hourly_html);
+            updateHourlyWeather(hourly_html,date);
         })
         .catch(error => console.error('Error:', error))
 }
@@ -125,10 +128,11 @@ function updateDailyWeather(html) {
     weekly_report.innerHTML = html
 }
 
-//updates the hourly weather section using html created in the fetchHourlyWeather function
-function updateHourlyWeather(html) {
+//updates the hourly weather section using html created in the fetchHourlyWeather function and the date
+function updateHourlyWeather(html,date) {
     const Hourly_report = document.getElementById("Hourly-report");
-
+    const hourly_date = document.getElementById("hourly_date");
+    hourly_date.innerHTML = `<p>${date}</p>`
     Hourly_report.innerHTML = html
 }
 
