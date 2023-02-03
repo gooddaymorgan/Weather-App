@@ -36,14 +36,17 @@ async function fetchHourlyWeather(url) {
         .then(response => response.json())
         .then(data => {
             let hourly_html = "";
+            let how_it_feels;
             //loops through the data 24 times (for 24 hours of info)
             for (let i = 0; i <= 24; i++) {
+                //runs function howItFeels with the temperature for that hour to get how it feels
+                how_it_feels = howItFeels(data.hourly.temperature_2m[i]);                
                 //creates a div with the data for each hour
                 hourly_html += `<div class="hourlyWeatherCard">`
                 hourly_html += `<p>${data.hourly.time[i]}</p>`
                 hourly_html += `<p>${data.hourly.temperature_2m[i]}${data.hourly_units.temperature_2m}</p>`
                 hourly_html += `<p>Conditions: ${weather_codes[data.hourly.weathercode[i]]}</p>`
-                hourly_html += `<p>How it feels</p>`
+                hourly_html += `<p>${how_it_feels}</p>`
                 hourly_html += `</div>`
             }
             //runs updateHourlyWeather function with the html added the previous for loop
