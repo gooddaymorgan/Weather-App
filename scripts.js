@@ -179,6 +179,27 @@ function howItFeels(temperature) {
     return temperature_feels
 }
 
+function currentWeatherMessage(temperature) {
+    let temperature_message;
+    if (temperature >= 15){
+        temperature_message = "Loose The Layers It's Hot As Sh*t"
+    }
+    else if (temperature >= 0 && temperature <15){
+        temperature_message = "Wow It's Actually tolerable"
+    }
+    else if (temperature > -15 && temperature <=0){
+        temperature_message = "Get a Sweater it F*ckin Chilly"
+    }
+    else if (temperature <= -15){
+        temperature_message = "Bundle Up It's Cold As Sh*t"
+    }
+    else{
+        temperature_message = 'IDK You Check'
+    }
+    return temperature_message
+}
+
+
 //this function is run when the user changes the city
 //it runs the all the fetch functions using the API url for that city
 async function changeCityWeather() {
