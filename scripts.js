@@ -132,7 +132,7 @@ function updateDailyWeather(html) {
 function updateHourlyWeather(html,date) {
     const Hourly_report = document.getElementById("Hourly-report");
     const hourly_date = document.getElementById("hourly_date");
-    hourly_date.innerHTML = `<p>${date}</p>`
+    hourly_date.innerHTML = `<p>Hourly Forecast for ${date}</p>`
     Hourly_report.innerHTML = html
 }
 
