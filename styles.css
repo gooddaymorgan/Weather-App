@@ -258,3 +258,11 @@ h1 , h2 {
 .hot-warning {
     background-color: #D7EF65;
 }
+
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
