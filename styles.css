@@ -16,7 +16,6 @@
         background-color: #182149;
     }
     
-    
     .conditions {
         list-style: circle;
         flex-wrap: wrap;
@@ -31,12 +30,22 @@
 
   @media only screen and (max-width: 845px) {
     /* For Tablet */
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p{
+        font-size: 1.2rem;
+    }
+
+
     .default-card-flex {
         margin: 20px;
         border-radius: 30px;
         align-items: top;
         justify-content: space-between;
-        padding: 40px;
+        padding: 30px;
     
     }
 
@@ -44,22 +53,35 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        padding: 30px;
+        padding-bottom: 0px;
     }
 
     
     .conditions {
         list-style: circle;
-        flex-wrap: wrap;
-        padding: 0px;
-        width: 25%;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-left: 10%;
+    }
+
+    .conditions ul {
+        font-size: 20px;
+
     }
     
-    .conditions li {
-        margin: 15px;
+    .help {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        text-align: center; 
+        justify-content: space-evenly;
+        align-items: left;
+        background-color: #000000;
     }
   }
 
-  @media only screen and (max-width: 340px) {
+  @media only screen and (max-width: 635px) {
     /* For Mobile */
     .default-card-flex {
         border-radius: 30px;
@@ -70,16 +92,28 @@
     
     }
 
-    .conditions {
+    .help {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+        color: yellow;
+        background-color: #000000;
+        margin: 20px;
+        padding: 40px;
+    }
+
+    /* .conditions {
         list-style: circle;
         flex-wrap: wrap;
         padding: 0px;
         width: 25%;
-    }
+    } */
     
-    .conditions li {
+    /* .conditions li {
         margin: 15px;
-    }
+    } */
+
   }
 
 
@@ -88,6 +122,7 @@ body {
     color: white;
     margin:0px;
 }
+
 
 .topnav {
     display: flex;
