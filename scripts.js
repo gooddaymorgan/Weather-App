@@ -36,19 +36,26 @@ async function fetchHourlyWeather(url) {
         .then(response => response.json())
         .then(data => {
             let hourly_html = "";
+            let how_it_feels;
+            //slices the date to the time isn't included
+            let date = data.hourly.time[1].slice(0,10)
             //loops through the data 24 times (for 24 hours of info)
             for (let i = 0; i <= 24; i++) {
+                //runs function howItFeels with the temperature for that hour to get how it feels
+                how_it_feels = howItFeels(data.hourly.temperature_2m[i]); 
+                //shortens time to only include the time not the date
+                let time = data.hourly.time[i];
+                let time_short = time.slice(11)               
                 //creates a div with the data for each hour
                 hourly_html += `<div class="hourlyWeatherCard">`
-                hourly_html += `<p>Time: ${data.hourly.time[i]}</p>`
-                hourly_html += `<p>Temperature: ${data.hourly.temperature_2m[i]}${data.hourly_units.temperature_2m}</p>`
-                hourly_html += `<p>Humidity: ${data.hourly.relativehumidity_2m[i]}${data.hourly_units.relativehumidity_2m}</p>`
-                hourly_html += `<p>Wind direction: ${data.hourly.winddirection_10m[i]}${data.hourly_units.winddirection_10m}</p>`
+                hourly_html += `<p>${time_short}</p>`
+                hourly_html += `<p>${data.hourly.temperature_2m[i]}${data.hourly_units.temperature_2m}</p>`
                 hourly_html += `<p>Conditions: ${weather_codes[data.hourly.weathercode[i]]}</p>`
+                hourly_html += `<p>${how_it_feels}</p>`
                 hourly_html += `</div>`
             }
             //runs updateHourlyWeather function with the html added the previous for loop
-            updateHourlyWeather(hourly_html);
+            updateHourlyWeather(hourly_html,date);
         })
         .catch(error => console.error('Error:', error))
 }
@@ -63,11 +70,10 @@ async function fetchDailyWeather(url) {
             for (let i = 0; i < data.daily.time.length; i++) {
                 //creates a div with the data for each day
                 daily_html += `<div class="dailyWeatherCard">`
-                daily_html += `<p>Day: ${data.daily.time[i]}</p>`
-                daily_html += `<p>Temperature high: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
-                daily_html += `<p>Temperature low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
-                daily_html += `<p>Wind speed: ${data.daily.windspeed_10m_max[i]}${data.daily_units.windspeed_10m_max}</p>`
-                daily_html += `<p>Conditions: ${weather_codes[data.daily.weathercode[i]]}</p>`
+                daily_html += `<p>${data.daily.time[i]}</p>`
+                daily_html += `<img></img>`
+                daily_html += `<p>High: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
+                daily_html += `<p>Low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
                 daily_html += `</div>`
             }
             //runs updateDailyWeather function with the html added the previous for loop
@@ -82,6 +88,12 @@ async function fetchCurrentWeather(url) {
         .then(data => {
             let relative_humidity;
             let conditions_data;
+
+            let time_and_date = data.current_weather.time;
+            //shortens time_and_date to only include the date not the time
+            let date = time_and_date.slice(0,10)
+            //shortens time_and_date to only include the time not the date
+            let time = time_and_date.slice(11)    
             //loops through 24 hours of data
             for (let i = 0; i <= 24; i++) {
                 //checks if hour in loop is the same as the current time. If it is sets the corresponding relative humidity as relative_humidity so it can be displayed in the current humidity section
@@ -92,12 +104,12 @@ async function fetchCurrentWeather(url) {
             // sets the conditions as the value of the weather code object that corresponds with the weather code received from the API
             conditions_data = weather_codes[data.current_weather.weathercode]
             //runs the updateCurrentWeather function using data from the api and the variables made above
-            updateCurrentWeather(data.current_weather.temperature, data.current_weather.windspeed, data.current_weather.winddirection, data.current_weather.time, relative_humidity, conditions_data)
+            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time)
         })
         .catch(error => console.error('Error:', error))
 }
 //this function updates the HTML to display the current weather data
-function updateCurrentWeather(temperature, windspead, winddirection, time, humidity, conditions) {
+function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time) {
     // gets the elements that will be displaying the data from the API
     const current_date = document.getElementById("current_date");
     const current_temp = document.getElementById("current_temp");
@@ -106,10 +118,13 @@ function updateCurrentWeather(temperature, windspead, winddirection, time, humid
     let current_humidity = document.getElementById("current_humidity");
     let current_conditions = document.getElementById("current_conditions");
     //changes the inner html of the elements grabbed above to display the weather data grabbed in the fetchCurrentWeather function
-    current_date.innerHTML = `<p>Time: ${time}</p>`
+    current_date.innerHTML = `
+    <p>${time}</p>
+    <p>${date}</p>
+    `
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
-    current_temp.innerHTML = `<p>Temperature: ${temperature}</p>`
+    current_temp.innerHTML = `<p>${temperature}</p>`
     current_humidity.innerHTML = `<p>Humidity: ${humidity}</p>`
     current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
 }
@@ -121,11 +136,42 @@ function updateDailyWeather(html) {
     weekly_report.innerHTML = html
 }
 
-//updates the hourly weather section using html created in the fetchHourlyWeather function
-function updateHourlyWeather(html) {
+//updates the hourly weather section using html created in the fetchHourlyWeather function and the date
+function updateHourlyWeather(html,date) {
     const Hourly_report = document.getElementById("Hourly-report");
-
+    const hourly_date = document.getElementById("hourly_date");
+    hourly_date.innerHTML = `<p>Hourly Forecast for ${date}</p>`
     Hourly_report.innerHTML = html
+}
+
+//returns how it feels based of what the temperature is 
+function howItFeels(temperature) {
+    let temperature_feels;
+    if (temperature >= 30){
+        temperature_feels = 'Super F*ckin Hot'
+    }
+    else if (temperature >= 20 && temperature <30){
+        temperature_feels = 'F*ckin Hot'
+    }
+    else if (temperature >= 15 && temperature <20){
+        temperature_feels = 'Warm'
+    }
+    else if (temperature >= 0 && temperature <=15){
+        temperature_feels = 'IDK Warm I Guess'
+    }
+    else if (temperature > -15 && temperature <=0){
+        temperature_feels = 'Cold'
+    }
+    else if (temperature > -25 && temperature <=-15){
+        temperature_feels = 'F*ckin Cold'
+    }
+    else if (temperature <= -25){
+        temperature_feels = 'Supper F*ckin Cold'
+    }
+    else{
+        temperature_feels = 'IDK Check Yourself *sshole'
+    }
+    return temperature_feels
 }
 
 //this function is run when the user changes the city
