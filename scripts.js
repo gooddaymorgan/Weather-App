@@ -124,6 +124,38 @@ function updateHourlyWeather(html) {
     Hourly_report.innerHTML = html
 }
 
+//returns how it feels based of what the temperature is 
+function howItFeels(temperature) {
+    let temperature_feels;
+    if (temperature >= 30){
+        temperature_feels = 'Super F*ckin Hot'
+    }
+    else if (temperature >= 20 && temperature <30){
+        temperature_feels = 'F*ckin Hot'
+    }
+    else if (temperature >= 15 && temperature <20){
+        temperature_feels = 'Warm'
+    }
+    else if (temperature >= 0 && temperature <=15){
+        temperature_feels = 'IDK Warm I Guess'
+    }
+    else if (temperature > -15 && temperature <=0){
+        temperature_feels = 'Cold'
+    }
+    else if (temperature > -25 && temperature <=-15){
+        temperature_feels = 'F*ckin Cold'
+    }
+    else if (temperature <= -25){
+        temperature_feels = 'Supper F*ckin Cold'
+    }
+    else{
+        temperature_feels = 'IDK Check Yourself *sshole'
+    }
+    return temperature_feels
+}
+
+// console.log(howItFeels(-25))
+
 //this function is run when the user changes the city
 //it runs the all the fetch functions using the API url for that city
 function changeCityWeather() {
