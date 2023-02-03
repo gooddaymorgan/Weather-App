@@ -4,42 +4,42 @@
     .default-card-flex {
         display: flex;
         flex-direction: row;
-        border-radius: 30px;
-        margin: 20px; /* Replace for Responsive */
         align-items: top;
-        justify-content: space-evenly;
-        padding: 40px;
+        justify-content: cent;
+        background-color: #000000;
     
     }
-    .responsive {
+    .city-card-flex{
         display: flex;
         background-color: #182149;
     }
-    
-    .conditions {
+    .conditions-wrapper-flex {
+        margin: 0%;
+        padding: 0%;
         list-style: circle;
-        flex-wrap: wrap;
-        padding: 0px;
-        width: 25%;
+        background-color: #182149;
+    }
+
+    /* Weekly */
+
+    .weekly {
+        text-align: center;
     }
     
-    .conditions li {
-        margin: 15px;
+    .weekly-grid{
+        display: flex;
+        justify-content: space-around;
+    
     }
+    
+    .weekly-grid div:not(:first-child) {
+        border-left: 1px solid white;
+    }
+    
   }
 
   @media only screen and (max-width: 845px) {
     /* For Tablet */
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    p{
-        font-size: 1.2rem;
-        font-weight: 100;
-    }
-
 
     .default-card-flex {
         margin: 20px;
@@ -75,6 +75,22 @@
         font-weight: 100;
         margin-left: 10%;
     }
+
+        /* Weekly */
+
+        .weekly {
+            text-align: center;
+        }
+        
+        .weekly-grid{
+            display: flex;
+            justify-content: space-around;
+        
+        }
+        
+        .weekly-grid div:not(:first-child) {
+            border-left: 1px solid white;
+        }
     
   }
 
@@ -86,19 +102,42 @@
         justify-content: space-between;
         margin: 20px;
         padding: 40px;
+        text-align: center;
     
     }
 
-    .help {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        text-align: center;
-        color: yellow;
-        background-color: #000000;
-        margin: 20px;
-        padding: 40px;
+    .conditions-wrapper-flex {
+        text-align: center; 
+        list-style: none;
+        
     }
+
+    .conditions-wrapper-flex ul {
+        text-align: center;
+        list-style: none;
+        padding: 0%;
+        margin: 0%;
+    }
+
+        /* Weekly */
+
+        .weekly {
+            text-align: center;
+        }
+        
+        .weekly-grid{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        
+        }
+        
+        .weekly-grid div:not(:first-child) {
+            border-top: 1px solid white;
+            border-left: 0px;
+        }
+
+
 
   }
 
@@ -109,11 +148,26 @@ body {
     margin:0px;
 }
 
+footer {
+    text-align: center;
+    margin: 0%;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
 .bold {
     font-weight: 900;
     font-size: 1.5rem;
 }
 
+
+
+.card-style {
+    border-radius: 30px;
+    padding: 50px;
+    Margin: 20px;
+
+}
 
 .topnav {
     display: flex;
@@ -123,6 +177,26 @@ body {
     padding: 20px;
     background-color: #434343;
     box-shadow: 5px 3px 3px rgba(1, 1, 1, 0.326);
+}
+
+.hourly {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+/*Table canaot go lower than 375px */
+.hourly table {
+    text-align: left;
+    width: 100%;
+}
+
+.hourly table, th, td{
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+
 }
 
 .select {

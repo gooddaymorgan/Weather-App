@@ -6,13 +6,15 @@
     <title>Untitled Weather App</title>
     <script src="scripts.js"></script>
     <link href="styles.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body class="default">
-
     <!--Navigation-->
     <nav class="topnav" id="myTopnav">
       <li>F*ck The Weather</li>
@@ -20,21 +22,27 @@
       <!--Dropdown -->
       <li class="dropdown">
         <label id="city_select"></label>
-          <select name="city_menu" id="city" onchange="changeCityWeather();" class="select">
-              <option value="select">- Select City -</option>
-              <option value="regina">Regina</option>
-              <option value="saskatoon">Saskatoon</option>
-              <option value="prince_albert">Prince Albert</option>
-              <option value="moose_jaw">Moose Jaw</option>
-              <option value="swift_current">Swift Current</option>
-              <option value="north_battleford">North Battleford</option>
-          </select>
+        <select
+          name="city_menu"
+          id="city"
+          onchange="changeCityWeather();"
+          class="select"
+        >
+          <option value="select">- Select City -</option>
+          <option value="regina">Regina</option>
+          <option value="saskatoon">Saskatoon</option>
+          <option value="prince_albert">Prince Albert</option>
+          <option value="moose_jaw">Moose Jaw</option>
+          <option value="swift_current">Swift Current</option>
+          <option value="north_battleford">North Battleford</option>
+        </select>
       </li>
       <!--<li>Information button</li>-->
 
       <!--Mobile-->
-      <li href="javascript:void(0);" class="icon" onclick="myFunction()"
-        >&#9776;</li>
+      <li href="javascript:void(0);" class="icon" onclick="myFunction()">
+        &#9776;
+      </li>
     </nav>
 
     <!--Warning message-->
@@ -46,70 +54,106 @@
     <!--Weather info Display-->
 
     <!--Wrapper-->
-    <div class="default-card default-card-flex">
-
+    <div class="default-card default-card-flex card-style">
       <!--Image-->
       <!--TEMPORARY NEEDS REPLACEMENT-->
 
       <div class="city-card-flex">
-        <div style ="width: 200px; background-color: aliceblue;">
-          <img src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/" alt="weather cloud">
+        <div style="background-color: aliceblue">
+          <img
+            src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+            alt="weather cloud"
+          />
         </div>
 
         <!--City Block-->
         <div>
           <h2 id="current_city">City Name</h2>
-            <p id="current_date">Date</p>
-            <p class="bold" id="current_temp">Temp</p>
-            <p >Description of Weather</p>
+          <p id="current_date">Date</p>
+          <p class="bold" id="current_temp">Temp</p>
+          <p>Description of Weather</p>
         </div>
       </div>
 
       <div class="conditions-wrapper-flex">
         <h2>Bundle Up it's cold as shit!</h2>
-          <ul class="conditions">
-            <li id="current_conditions">Conditions</li>
-            <li id="current_humidity">Humdity</li>
-            <li id="current_windspeed">Wind Speed</li>
-            <li id="current_winddirection">Wind Direction</li>
-          </ul>
+        <ul class="conditions">
+          <li id="current_conditions">Conditions</li>
+          <li id="current_humidity">Humdity</li>
+          <li id="current_windspeed">Wind Speed</li>
+          <li id="current_winddirection">Wind Direction</li>
+        </ul>
       </div>
     </div>
 
-    <!--Daily Vs Weekly Report !-->
     <div>
 
       <!--Weekly-->
 
-      <div class="default-card" >
-        <h2>Weekly</h2>
+      <div class="default-card weekly-grid" card-style weekly >
+        <h2>Weekly Forecast</h2>
         <div id="weekly-report" style="display:flex; margin:30px;">
         <div>
-            <p>Monday</p>
+          <p>Mon</p>
+          <img
+          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+          alt="weather cloud"
+        />
+          <p>Temp</p>
         </div>
 
         <div>
-            <p>Tuesday</p>
+          <p>Tues</p>
+          <img
+          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+          alt="weather cloud"
+        />
+          <p>Temp</p>
         </div>
 
         <div>
-            <p>Wed</p>
+          <p>Wed</p>
+          <img
+          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+          alt="weather cloud"
+        />
+          <p>Temp</p>
         </div>
 
         <div>
-            <p>Thrus</p>
+          <p>Thrus</p>
+          <img
+          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+          alt="weather cloud"
+        />
+          <p>Temp</p>
         </div>
 
         <div>
-            <p>Fri</p>
+          <p>Fri</p>
+          <img
+          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+          alt="weather cloud"
+        />
+          <p>Temp</p>
         </div>
 
         <div>
-            <p>sat</p>
+          <p>Sat</p>
+          <img
+          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+          alt="weather cloud"
+        />
+          <p>Temp</p>
         </div>
 
         <div>
-            <p>Sun</p>
+          <p>Sun</p>
+          <img
+          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
+          alt="weather cloud"
+        />
+          <p>Temp</p>
         </div>
       </div>
     </div>
@@ -127,6 +171,36 @@
         <p>Weather App Copyright </p>
     </footer>
 
+    <div class="default-card card-style hourly" id="weekly-report">
+      <h2>Hourly Forecast</h2>
+      <p>Hourly Forecast Time</p>
+      
+      <div>
+        <p>GRAPH</p>
+      </div>
 
+      <div>
+      <table>
+        <tr>
+          <th>Time</th>
+          <th>Temp</th>
+          <th>Weather Conditions</th>
+          <th>How it Feels</th>
+        </tr>
+
+        <tr>
+          <td>9:00am</td>
+          <td>31'</td>
+          <td>Snowy</td>
+          <td>Fucking Cold</td>
+        </tr>
+
+      </table>
+    </div>
+    </div>
+
+    <footer>
+      <p>F*ck The Weather ©  2023 | Leah & Morgan</p>
+    </footer>
   </body>
 </html>
