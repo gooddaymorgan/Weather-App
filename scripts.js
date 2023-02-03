@@ -67,6 +67,8 @@ async function fetchDailyWeather(url) {
                 daily_html += `<div class="dailyWeatherCard">`
                 daily_html += `<p>${data.daily.time[i]}</p>`
                 daily_html += `<img></img>`
+                daily_html += `<p>High: ${data.daily.temperature_2m_max[i]}</p>`
+                daily_html += `<p>Low: ${data.daily.temperature_2m_min[i]}</p>`
                 daily_html += `</div>`
             }
             //runs updateDailyWeather function with the html added the previous for loop
