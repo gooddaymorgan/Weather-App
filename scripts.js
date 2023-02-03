@@ -48,12 +48,31 @@ async function fetchHourlyWeather(url) {
                 let time_short = time.slice(11)               
                 //creates a div with the data for each hour
                 hourly_html += `<div class="hourlyWeatherCard">`
-                hourly_html += `<p>${time_short}</p>`
-                hourly_html += `<p>${data.hourly.temperature_2m[i]}${data.hourly_units.temperature_2m}</p>`
-                hourly_html += `<p>Conditions: ${weather_codes[data.hourly.weathercode[i]]}</p>`
-                hourly_html += `<p>${how_it_feels}</p>`
+                hourly_html += `<table>`
+                hourly_html += `<tr>`
+                hourly_html += `<th>${time_short}</th>`
+                hourly_html += `<th>${data.hourly.temperature_2m[i]}${data.hourly_units.temperature_2m}</th>`
+                hourly_html += `<th>${weather_codes[data.hourly.weathercode[i]]}</th>`
+                hourly_html += `<th>${how_it_feels}</th>`
+                hourly_html += `</tr>`
+                hourly_html += `</table>`
                 hourly_html += `</div>`
             }
+
+            
+            // <tr>
+            //   <th>Time</th>
+            //   <th>Temp</th>
+            //   <th>Weather Conditions</th>
+            //   <th>How it Feels</th>
+            // </tr>
+    
+            // <tr>
+            //   <td>9:00am</td>
+            //   <td>31'</td>
+            //   <td>Snowy</td>
+            //   <td>Fucking Cold</td>
+            // </tr>
             //runs updateHourlyWeather function with the html added the previous for loop
             updateHourlyWeather(hourly_html,date);
         })
@@ -157,7 +176,7 @@ function howItFeels(temperature) {
         temperature_feels = 'Warm'
     }
     else if (temperature >= 0 && temperature <=15){
-        temperature_feels = 'IDK Warm I Guess'
+        temperature_feels = 'Warm IG'
     }
     else if (temperature > -15 && temperature <=0){
         temperature_feels = 'Cold'

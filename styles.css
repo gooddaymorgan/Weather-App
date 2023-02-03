@@ -32,9 +32,9 @@
     
     }
     
-    .weekly-grid div:not(:first-child) {
+    /* .weekly-grid div:not(:first-child) {
         border-left: 1px solid white;
-    }
+    } */
     
   }
 
