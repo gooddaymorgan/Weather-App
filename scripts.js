@@ -39,7 +39,6 @@ async function fetchHourlyWeather(url) {
             let how_it_feels;
             //slices the date to the time isn't included
             let date = data.hourly.time[1].slice(0,10)
-            console.log(date)
             //loops through the data 24 times (for 24 hours of info)
             for (let i = 0; i <= 24; i++) {
                 //runs function howItFeels with the temperature for that hour to get how it feels
@@ -73,8 +72,8 @@ async function fetchDailyWeather(url) {
                 daily_html += `<div class="dailyWeatherCard">`
                 daily_html += `<p>${data.daily.time[i]}</p>`
                 daily_html += `<img></img>`
-                daily_html += `<p>High: ${data.daily.temperature_2m_max[i]}</p>`
-                daily_html += `<p>Low: ${data.daily.temperature_2m_min[i]}</p>`
+                daily_html += `<p>High: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
+                daily_html += `<p>Low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
                 daily_html += `</div>`
             }
             //runs updateDailyWeather function with the html added the previous for loop
@@ -99,7 +98,7 @@ async function fetchCurrentWeather(url) {
             // sets the conditions as the value of the weather code object that corresponds with the weather code received from the API
             conditions_data = weather_codes[data.current_weather.weathercode]
             //runs the updateCurrentWeather function using data from the api and the variables made above
-            updateCurrentWeather(data.current_weather.temperature, data.current_weather.windspeed, data.current_weather.winddirection, data.current_weather.time, relative_humidity, conditions_data)
+            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant), data.current_weather.time, (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data)
         })
         .catch(error => console.error('Error:', error))
 }
@@ -116,7 +115,7 @@ function updateCurrentWeather(temperature, windspead, winddirection, time, humid
     current_date.innerHTML = `<p>Time: ${time}</p>`
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
-    current_temp.innerHTML = `<p>Temperature: ${temperature}</p>`
+    current_temp.innerHTML = `<p>${temperature}</p>`
     current_humidity.innerHTML = `<p>Humidity: ${humidity}</p>`
     current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
 }
@@ -165,8 +164,6 @@ function howItFeels(temperature) {
     }
     return temperature_feels
 }
-
-// console.log(howItFeels(-25))
 
 //this function is run when the user changes the city
 //it runs the all the fetch functions using the API url for that city
