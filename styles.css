@@ -249,8 +249,6 @@ ul {
   font-size: 1.5rem;
 }
 
-
-
 .topnav {
   display: flex;
   justify-content: space-between;
@@ -283,6 +281,8 @@ td {
   text-align: center;
 }
 
+/*Default card style */
+
 .card-style {
     box-shadow: 5px 3px 3px rgba(1, 1, 1, 0.326);
 }
@@ -307,6 +307,8 @@ h1,
 h2 {
   font-weight: bold;
 }
+
+/* Changing styles */
 
 .default {
   background-color: #434343;
