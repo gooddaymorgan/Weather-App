@@ -47,7 +47,7 @@ async function fetchHourlyWeather(url) {
                 let time = data.hourly.time[i];
                 let time_short = time.slice(11)               
                 //creates a div with the data for each hour
-                hourly_html += `<div class="hourlyWeatherCard">`
+                hourly_html += `<div class="hourly">`
                 hourly_html += `<table>`
                 hourly_html += `<tr>`
                 hourly_html += `<th>${time_short}</th>`
