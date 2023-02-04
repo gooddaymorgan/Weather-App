@@ -137,6 +137,7 @@ function updateCurrentWeather(temperature, windspead, winddirection, humidity, c
     current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
 
     changeTheme(temperature)
+    changeImg(temperature)
 }
 
 //updates the daily weather section using html created in the fetchDailyWeather function
@@ -198,7 +199,6 @@ function currentWeatherMessage(temperature) {
     }
     else if (temperature <= -15){
         temperature_message = "Bundle Up It's Cold As Sh*t"
-        image.src = "images/sunny.png"
     }
     else{
         temperature_message = 'IDK You Check'
@@ -224,8 +224,10 @@ function changeTheme(temperature) {
     }
 }
 
+//changes image based on tempature code
 function changeImg(temperature) {
     const main = document.getElementById('main-image');
+    console.log(main);
     const mon = document.getElementById('mon-image');
     const tues = document.getElementById('tues-image');
     const wed = document.getElementById('wed-image');
@@ -238,13 +240,13 @@ function changeImg(temperature) {
     // const topnav = document.getElementById('myTopnav');
 
     if (temperature >= 15){
-        body.setAttribute("class", "hot")
+        //body.setAttribute("class", "hot")
     }
     else if (temperature >= -15 && temperature <15){
-        body.setAttribute("class", "default")
+        //main.src("image/snow.png")
     }
     else if (temperature <= -15){
-        body.setAttribute("class", "freezing")
+        main.setAttribute("src", "image/snow.png")
     }
     else{
         body.setAttribute("class", "default")
