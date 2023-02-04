@@ -30,6 +30,37 @@ const weather_codes = {
     '99':'Thunderstorm: Heavy hail'
 };
 
+const weather_images = {
+    '0':'<img src="images/sunshine.png" alt="sun">',
+    '1':'<img src="images/sunshine.png" alt="sun">',
+    '2':'<img src="images/p-cloud.png" alt="cloudy sun">',
+    '3':'<img src="images/cloud.png" alt="cloud">',
+    '45':'<img src="images/fog.png" alt="fog">',
+    '48':'<img src="images/fog.png" alt="fog">',
+    '51':'<img src="images/rainy.png" alt="raincloud">',
+    '53':'<img src="images/rainy.png" alt="raincloud">',
+    '55':'<img src="images/rainy.png" alt="raincloud">',
+    '56':'<img src="images/rainy.png" alt="raincloud">',
+    '57':'<img src="images/rainy.png" alt="raincloud">',
+    '61':'<img src="images/rainy.png" alt="raincloud">',
+    '63':'<img src="images/rainy.png" alt="raincloud">',
+    '65':'<img src="images/rainy.png" alt="raincloud">',
+    '66':'<img src="images/snow.png" alt="snowing cloud">',
+    '67':'<img src="images/snow.png" alt="snowing cloud">',
+    '71':'<img src="images/snow.png" alt="snowing cloud">',
+    '73':'<img src="images/snow.png" alt="snowing cloud">',
+    '75':'<img src="images/snow.png" alt="snowing cloud">',
+    '77':'<img src="images/snow.png" alt="snowing cloud">',
+    '80':'<img src="images/snow.png" alt="snowing cloud">',
+    '81':'<img src="images/snow.png" alt="snowing cloud">',
+    '82':'<img src="images/snow.png" alt="snowing cloud">',
+    '85':'<img src="images/snow.png" alt="snowing cloud">',
+    '86':'<img src="images/snow.png" alt="snowing cloud">',
+    '95':'<img src="images/thunder.png" alt="thunder cloud">',
+    '96':'<img src="images/thunder.png" alt="thunder cloud">',
+    '99':'<img src="images/thunder.png" alt="thunder cloud">',
+};
+
 //fetches the hourly weather data from the API and adds the data to hourly_html
 async function fetchHourlyWeather(url) {
     return fetch(url)
@@ -76,7 +107,7 @@ async function fetchDailyWeather(url) {
                 //creates a div with the data for each day
                 daily_html += `<div class="dailyWeatherCard">`
                 daily_html += `<p>${data.daily.time[i]}</p>`
-                daily_html += `<img></img>`
+                daily_html += weather_images[data.daily.weathercode[i]]
                 daily_html += `<p>High: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
                 daily_html += `<p>Low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
                 daily_html += `</div>`
@@ -110,13 +141,14 @@ async function fetchCurrentWeather(url) {
             // sets the conditions as the value of the weather code object that corresponds with the weather code received from the API
             conditions_data = weather_codes[data.current_weather.weathercode]
             //runs the updateCurrentWeather function using data from the api and the variables made above
-            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time, message, data.current_weather.temperature)
         })
         .catch(error => console.error('Error:', error))
 }
+
 //this function updates the HTML to display the current weather data
 function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time, message,temperature_number) {
     // gets the elements that will be displaying the data from the API
+    const main_img = document.getElementById("main-image");
     const current_date = document.getElementById("current_date");
     const current_temp = document.getElementById("current_temp");
     const current_windspeed = document.getElementById("current_windspeed");
@@ -129,6 +161,7 @@ function updateCurrentWeather(temperature, windspead, winddirection, humidity, c
     <p>${time}</p>
     <p>${date}</p>
     `
+    main_img.innerHTML = image;
     tempurature_message.innerHTML = message;
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
@@ -189,6 +222,7 @@ function currentWeatherMessage(temperature) {
     let temperature_message;
     if (temperature >= 15){
         temperature_message = "Loose The Layers It's Hot As Sh*t"
+
     }
     else if (temperature >= 0 && temperature <15){
         temperature_message = "Wow It's Actually tolerable"
@@ -208,7 +242,9 @@ function currentWeatherMessage(temperature) {
 //changes color theme based on temperature
 function changeTheme(temperature) {
     const body = document.getElementById('body');
+
     if (temperature >= 10){
+    
         body.setAttribute("class", "hot")
     }
     else if (temperature >= -5 && temperature < 10){
@@ -221,7 +257,6 @@ function changeTheme(temperature) {
         body.setAttribute("class", "default")
     }
 }
-
 
 
 //this function is run when the user changes the city

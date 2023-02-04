@@ -217,7 +217,6 @@
     font-size: 0.7rem;
   }
 
-
 }
 
 /** Global **/
@@ -343,6 +342,10 @@ h2 {
 
 .hot-accent {
   color: #d7ef65;
+}
+
+.hot-image {
+  background-image: url("images/sunshine.png");
 }
 
 .hot-warning {
