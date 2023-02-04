@@ -141,12 +141,15 @@ async function fetchCurrentWeather(url) {
             // sets the conditions as the value of the weather code object that corresponds with the weather code received from the API
             conditions_data = weather_codes[data.current_weather.weathercode]
             //runs the updateCurrentWeather function using data from the api and the variables made above
+            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time, message, data.current_weather.temperature ,weather_images[data.current_weather.weathercode])
+    
+
         })
         .catch(error => console.error('Error:', error))
 }
 
 //this function updates the HTML to display the current weather data
-function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time, message,temperature_number) {
+function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time, message,temperature_number,image) {
     // gets the elements that will be displaying the data from the API
     const main_img = document.getElementById("main-image");
     const current_date = document.getElementById("current_date");
@@ -170,7 +173,6 @@ function updateCurrentWeather(temperature, windspead, winddirection, humidity, c
     current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
 
     changeTheme(temperature_number)
-    console.log(temperature_number)
 }
 
 //updates the daily weather section using html created in the fetchDailyWeather function
