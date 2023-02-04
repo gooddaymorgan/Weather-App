@@ -217,9 +217,6 @@
     font-size: 0.7rem;
   }
 
-  .topnav {
-    
-  }
 
 }
 
@@ -255,9 +252,11 @@ ul {
   align-items: center;
   list-style-type: none;
   padding: 20px;
-  background-color: #434343;
   box-shadow: 5px 3px 3px rgba(1, 1, 1, 0.326);
 }
+.topnav ul,li {
+    list-style-type: none;
+  }
 
 .hourly {
   display: flex;
