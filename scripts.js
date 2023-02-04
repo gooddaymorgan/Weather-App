@@ -135,6 +135,8 @@ function updateCurrentWeather(temperature, windspead, winddirection, humidity, c
     current_temp.innerHTML = `<p>${temperature}</p>`
     current_humidity.innerHTML = `<p>Humidity: ${humidity}</p>`
     current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
+
+    changeTheme(temperature)
 }
 
 //updates the daily weather section using html created in the fetchDailyWeather function
@@ -201,6 +203,24 @@ function currentWeatherMessage(temperature) {
     }
     return temperature_message
 }
+
+function changeTheme(temperature) {
+    const body = document.getElementById('body');
+    // const topnav = document.getElementById('myTopnav');
+    if (temperature >= 15){
+        body.setAttribute("class", "hot")
+    }
+    else if (temperature >= -15 && temperature <15){
+        body.setAttribute("class", "default")
+    }
+    else if (temperature <= -15){
+        body.setAttribute("class", "freezing")
+    }
+    else{
+        body.setAttribute("class", "default")
+    }
+}
+
 
 
 //this function is run when the user changes the city
