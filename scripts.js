@@ -30,6 +30,37 @@ const weather_codes = {
     '99':'Thunderstorm: Heavy hail'
 };
 
+const weather_images = {
+    '0':'<img src="images/sunshine.png" alt="sun">',
+    '1':'<img src="images/sunshine.png" alt="sun">',
+    '2':'<img src="images/p-cloud.png" alt="cloudy sun">',
+    '3':'<img src="images/cloud.png" alt="cloud">',
+    '45':'<img src="images/fog.png" alt="fog">',
+    '48':'<img src="images/fog.png" alt="fog">',
+    '51':'<img src="images/rainy.png" alt="raincloud">',
+    '53':'<img src="images/rainy.png" alt="raincloud">',
+    '55':'<img src="images/rainy.png" alt="raincloud">',
+    '56':'<img src="images/rainy.png" alt="raincloud">',
+    '57':'<img src="images/rainy.png" alt="raincloud">',
+    '61':'<img src="images/rainy.png" alt="raincloud">',
+    '63':'<img src="images/rainy.png" alt="raincloud">',
+    '65':'<img src="images/rainy.png" alt="raincloud">',
+    '66':'<img src="images/snow.png" alt="snowing cloud">',
+    '67':'<img src="images/snow.png" alt="snowing cloud">',
+    '71':'<img src="images/snow.png" alt="snowing cloud">',
+    '73':'<img src="images/snow.png" alt="snowing cloud">',
+    '75':'<img src="images/snow.png" alt="snowing cloud">',
+    '77':'<img src="images/snow.png" alt="snowing cloud">',
+    '80':'<img src="images/snow.png" alt="snowing cloud">',
+    '81':'<img src="images/snow.png" alt="snowing cloud">',
+    '82':'<img src="images/snow.png" alt="snowing cloud">',
+    '85':'<img src="images/snow.png" alt="snowing cloud">',
+    '86':'<img src="images/snow.png" alt="snowing cloud">',
+    '95':'<img src="images/thunder.png" alt="thunder cloud">',
+    '96':'<img src="images/thunder.png" alt="thunder cloud">',
+    '99':'<img src="images/thunder.png" alt="thunder cloud">',
+};
+
 //fetches the hourly weather data from the API and adds the data to hourly_html
 async function fetchHourlyWeather(url) {
     return fetch(url)
@@ -76,7 +107,7 @@ async function fetchDailyWeather(url) {
                 //creates a div with the data for each day
                 daily_html += `<div class="dailyWeatherCard">`
                 daily_html += `<p>${data.daily.time[i]}</p>`
-                daily_html += `<img></img>`
+                daily_html += weather_images[data.daily.weathercode[i]]
                 daily_html += `<p>High: ${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max}</p>`
                 daily_html += `<p>Low: ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</p>`
                 daily_html += `</div>`
@@ -137,7 +168,6 @@ function updateCurrentWeather(temperature, windspead, winddirection, humidity, c
     current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
 
     changeTheme(temperature)
-    changeImg(temperature)
 }
 
 //updates the daily weather section using html created in the fetchDailyWeather function
@@ -223,36 +253,6 @@ function changeTheme(temperature) {
         body.setAttribute("class", "default")
     }
 }
-
-//changes image based on tempature code
-function changeImg(temperature) {
-    const main = document.getElementById('main-image');
-    console.log(main);
-    const mon = document.getElementById('mon-image');
-    const tues = document.getElementById('tues-image');
-    const wed = document.getElementById('wed-image');
-    const thrus= document.getElementById('thrus-image');
-    const fri = document.getElementById('fri-image');
-    const sat = document.getElementById('sat-image');
-    const sun = document.getElementById('sun-image');
-
-
-    // const topnav = document.getElementById('myTopnav');
-
-    if (temperature >= 15){
-        //body.setAttribute("class", "hot")
-    }
-    else if (temperature >= -15 && temperature <15){
-        //main.src("image/snow.png")
-    }
-    else if (temperature <= -15){
-        main.setAttribute("src", "image/snow.png")
-    }
-    else{
-        body.setAttribute("class", "default")
-    }
-}
-
 
 
 //this function is run when the user changes the city
