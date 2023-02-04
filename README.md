@@ -1,6 +1,6 @@
 # F*ck The Weather - Weather Webpage
 This project was created as a group project for the Interactive Design and Technology program at Saskatchewan Polytechnic.  
- 
+
 🖥️ Creators: @leah753, @gooddaymorgan  
 ☁️ API: https://open-meteo.com/  
 📝 Made with: HTML, CSS, Javascript  
@@ -39,10 +39,10 @@ Leah was in charge of project managment, API, JSON, and Javascript
 Please feel free to provide us feedback through any of the below methods:
 
 - Morgan's Twitter: @daymorgandesign
-- Leah: 
+- Leah's E-Mail: chater2915@saskpolytech.ca
 
-## Lisence
+## License
 
-Our API: https://open-meteo.com/  is open source and free to use
-We as Students are protected under the Fair Dealing Law
-We allow others to use our work
+- Our API: https://open-meteo.com/  is open source and free to use
+- We as Students are protected under the Fair Dealing Law
+- We allow others to use our work
