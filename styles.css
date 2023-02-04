@@ -349,3 +349,11 @@ h2 {
 .hot-warning {
   background-color: #d7ef65;
 }
+
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
