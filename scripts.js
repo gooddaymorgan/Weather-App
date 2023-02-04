@@ -207,13 +207,13 @@ function currentWeatherMessage(temperature) {
 function changeTheme(temperature) {
     const body = document.getElementById('body');
     // const topnav = document.getElementById('myTopnav');
-    if (temperature >= 15){
+    if (temperature >= 10){
         body.setAttribute("class", "hot")
     }
-    else if (temperature >= -15 && temperature <15){
+    else if (temperature >= -5 && temperature <10){
         body.setAttribute("class", "default")
     }
-    else if (temperature <= -15){
+    else if (temperature <= -5){
         body.setAttribute("class", "freezing")
     }
     else{
