@@ -32,7 +32,9 @@ Morgan was in charge of the project management, design, and coding the webpage i
 Leah was in charge of project managment, API, JSON, and Javascript
 
 - Made with pure vanilla Javascript 
-- Feature Weather API that fetches data in JSON 
+- Allows the user to select the city they want to view the weather for
+- Feature Weather API that fetches data in JSON from open-meteo.com
+- Color theme text, and images change based the current tempurature and conditions 
 
 
 ## 🐞 Bugs, Questions, & Comments
