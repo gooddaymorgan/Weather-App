@@ -141,13 +141,14 @@ async function fetchCurrentWeather(url) {
             // sets the conditions as the value of the weather code object that corresponds with the weather code received from the API
             conditions_data = weather_codes[data.current_weather.weathercode]
             //runs the updateCurrentWeather function using data from the api and the variables made above
-            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time, message)
+            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time, message, weather_images[data.current_weather.weathercode])
         })
         .catch(error => console.error('Error:', error))
 }
 //this function updates the HTML to display the current weather data
-function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time, message) {
+function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time, message, image) {
     // gets the elements that will be displaying the data from the API
+    const main_img = document.getElementById("main-image");
     const current_date = document.getElementById("current_date");
     const current_temp = document.getElementById("current_temp");
     const current_windspeed = document.getElementById("current_windspeed");
@@ -160,6 +161,7 @@ function updateCurrentWeather(temperature, windspead, winddirection, humidity, c
     <p>${time}</p>
     <p>${date}</p>
     `
+    main_img.innerHTML = image;
     tempurature_message.innerHTML = message;
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
