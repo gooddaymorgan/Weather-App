@@ -38,9 +38,6 @@
         </select>
       </li>
       <!--<li>Information button</li>-->
-
-   
-  
     </nav>
 
     <!--Warning message-->
@@ -51,141 +48,113 @@
 
     <!--Weather info Display-->
     <div id="main_content" class="hidden">
-    <!--Wrapper-->
-    <div class="default-card default-card-flex card-style">
-      <!--Image-->
-      <!--TEMPORARY NEEDS REPLACEMENT-->
+      <!--Wrapper-->
+      <div class="default-card default-card-flex card-style">
+        <!--Image-->
+        <!--TEMPORARY NEEDS REPLACEMENT-->
 
-      <div class="city-card-flex">
-        <div style="background-color: aliceblue">
-          <img
-            src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-            alt="weather cloud"
-          />
+        <div class="city-card-flex">
+          <div style="background-color: aliceblue">
+            <img id="main-image">
+          </div>
+
+          <!--City Block-->
+          <div class="desktop-margin">
+            <h2 id="current_city">City Name</h2>
+            <p id="current_date">Date</p>
+            <p class="bold" id="current_temp">Temp</p>
+            <p>Description of Weather</p>
+          </div>
         </div>
 
-        <!--City Block-->
-        <div class="desktop-margin">
-          <h2 id="current_city">City Name</h2>
-          <p id="current_date">Date</p>
-          <p class="bold" id="current_temp">Temp</p>
-          <p>Description of Weather</p>
+        <div class="conditions-wrapper-flex">
+          <h2 id="tempurature_message">Bundle Up it's cold as shit!</h2>
+          <ul class="conditions">
+            <li id="current_conditions">Conditions</li>
+            <li id="current_humidity">Humdity</li>
+            <li id="current_windspeed">Wind Speed</li>
+            <li id="current_winddirection">Wind Direction</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <!--Weekly-->
+
+        <div class="default-card card-style weekly">
+          <h2>Weekly Forecast</h2>
+          <div id="weekly-report" class="weekly-grid">
+            <div clas="weekwrapper">
+              <p>Mon</p>
+              <img id="mon-image">
+              <p>Temp</p>
+            </div>
+
+            <div>
+              <p>Tues</p>
+              <img id="tues-image">
+              <p>Temp</p>
+            </div>
+
+            <div>
+              <p>Wed</p>
+              <img id="wed-image">
+              <p>Temp</p>
+            </div>
+
+            <div>
+              <p>Thrus</p>
+              <img id="thrus-image">
+              <p>Temp</p>
+            </div>
+
+            <div>
+              <p>Fri</p>
+              <img id="fri-image">
+              <p>Temp</p>
+            </div>
+
+            <div>
+              <p>Sat</p>
+              <img id="sat-image">
+              <p>Temp</p>
+            </div>
+
+            <div>
+              <p>Sun</p>
+              <img id="sun-image">
+              <p>Temp</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="conditions-wrapper-flex">
-        <h2 id="tempurature_message">Bundle Up it's cold as shit!</h2>
-        <ul class="conditions">
-          <li id="current_conditions">Conditions</li>
-          <li id="current_humidity">Humdity</li>
-          <li id="current_windspeed">Wind Speed</li>
-          <li id="current_winddirection">Wind Direction</li>
-        </ul>
-      </div>
-    </div>
+      <div class="default-card card-style hourly">
+        <h2>Hourly Forecast</h2>
+        <p id="hourly_date"></p>
 
-    <div>
+        <div id="Hourly-report">
+          <table>
+            <tr>
+              <th>Time</th>
+              <th>Temp</th>
+              <th>Weather Conditions</th>
+              <th>How it Feels</th>
+            </tr>
 
-      <!--Weekly-->
-
-      <div class="default-card card-style weekly">
-        <h2>Weekly Forecast</h2>
-        <div id="weekly-report" class="weekly-grid">
-        <div clas="weekwrapper">
-          <p>Mon</p>
-          <img
-          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-          alt="weather cloud"
-        />
-          <p>Temp</p>
-        </div>
-
-        <div>
-          <p>Tues</p>
-          <img
-          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-          alt="weather cloud"
-        />
-          <p>Temp</p>
-        </div>
-        <div>
-          <p>Wed</p>
-          <img
-          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-          alt="weather cloud"
-        />
-          <p>Temp</p>
-        </div>
-
-        <div>
-          <p>Thrus</p>
-          <img
-          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-          alt="weather cloud"
-        />
-          <p>Temp</p>
-        </div>
-        
-        <div>
-          <p>Fri</p>
-          <img
-          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-          alt="weather cloud"
-        />
-          <p>Temp</p>
-        </div>
-
-
-
-        <div>
-          <p>Sat</p>
-          <img
-          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-          alt="weather cloud"
-        />
-          <p>Temp</p>
-        </div>
-    
-        <div>
-          <p>Sun</p>
-          <img
-          src="https://www.seekpng.com/ima/u2a9o0u2u2t4o0y3/"
-          alt="weather cloud"
-        />
-          <p>Temp</p>
+            <tr>
+              <td>9:00am</td>
+              <td>31'</td>
+              <td>Snowy</td>
+              <td>Fucking Cold</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
-    </div>
-
-
-    <div class="default-card card-style hourly" >
-      <h2>Hourly Forecast</h2>
-      <p id="hourly_date"></p>
-
-      <div id="Hourly-report">
-      <table>
-        <tr>
-          <th>Time</th>
-          <th>Temp</th>
-          <th>Weather Conditions</th>
-          <th>How it Feels</th>
-        </tr>
-
-        <tr>
-          <td>9:00am</td>
-          <td>31'</td>
-          <td>Snowy</td>
-          <td>Fucking Cold</td>
-        </tr>
-
-      </table>
-    </div>
-    </div>
-  </div>
 
     <footer>
-      <p>F*ck The Weather ©  2023 | Leah & Morgan</p>
+      <p>F*ck The Weather © 2023 | Leah & Morgan</p>
     </footer>
   </body>
 </html>

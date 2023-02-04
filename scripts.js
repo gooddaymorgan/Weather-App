@@ -188,6 +188,7 @@ function currentWeatherMessage(temperature) {
     let temperature_message;
     if (temperature >= 15){
         temperature_message = "Loose The Layers It's Hot As Sh*t"
+
     }
     else if (temperature >= 0 && temperature <15){
         temperature_message = "Wow It's Actually tolerable"
@@ -197,6 +198,7 @@ function currentWeatherMessage(temperature) {
     }
     else if (temperature <= -15){
         temperature_message = "Bundle Up It's Cold As Sh*t"
+        image.src = "images/sunny.png"
     }
     else{
         temperature_message = 'IDK You Check'
@@ -207,6 +209,34 @@ function currentWeatherMessage(temperature) {
 function changeTheme(temperature) {
     const body = document.getElementById('body');
     // const topnav = document.getElementById('myTopnav');
+
+    if (temperature >= 15){
+        body.setAttribute("class", "hot")
+    }
+    else if (temperature >= -15 && temperature <15){
+        body.setAttribute("class", "default")
+    }
+    else if (temperature <= -15){
+        body.setAttribute("class", "freezing")
+    }
+    else{
+        body.setAttribute("class", "default")
+    }
+}
+
+function changeImg(temperature) {
+    const main = document.getElementById('main-image');
+    const mon = document.getElementById('mon-image');
+    const tues = document.getElementById('tues-image');
+    const wed = document.getElementById('wed-image');
+    const thrus= document.getElementById('thrus-image');
+    const fri = document.getElementById('fri-image');
+    const sat = document.getElementById('sat-image');
+    const sun = document.getElementById('sun-image');
+
+
+    // const topnav = document.getElementById('myTopnav');
+
     if (temperature >= 15){
         body.setAttribute("class", "hot")
     }
