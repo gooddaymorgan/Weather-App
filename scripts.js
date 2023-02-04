@@ -93,6 +93,7 @@ async function fetchCurrentWeather(url) {
         .then(data => {
             let relative_humidity;
             let conditions_data;
+            let message = currentWeatherMessage(data.current_weather.temperature);
 
             let time_and_date = data.current_weather.time;
             //shortens time_and_date to only include the date not the time
@@ -109,17 +110,18 @@ async function fetchCurrentWeather(url) {
             // sets the conditions as the value of the weather code object that corresponds with the weather code received from the API
             conditions_data = weather_codes[data.current_weather.weathercode]
             //runs the updateCurrentWeather function using data from the api and the variables made above
-            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time)
+            updateCurrentWeather((data.current_weather.temperature + data.daily_units.temperature_2m_max), (data.current_weather.windspeed + data.daily_units.windspeed_10m_max), (data.current_weather.winddirection + data.daily_units.winddirection_10m_dominant),  (relative_humidity + data.hourly_units.relativehumidity_2m), conditions_data, date, time, message)
         })
         .catch(error => console.error('Error:', error))
 }
 //this function updates the HTML to display the current weather data
-function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time) {
+function updateCurrentWeather(temperature, windspead, winddirection, humidity, conditions, date, time, message) {
     // gets the elements that will be displaying the data from the API
     const current_date = document.getElementById("current_date");
     const current_temp = document.getElementById("current_temp");
     const current_windspeed = document.getElementById("current_windspeed");
     const current_winddirection = document.getElementById("current_winddirection");
+    const temperature_message = document.getElementById("tempurature_message");
     let current_humidity = document.getElementById("current_humidity");
     let current_conditions = document.getElementById("current_conditions");
     //changes the inner html of the elements grabbed above to display the weather data grabbed in the fetchCurrentWeather function
@@ -127,11 +129,14 @@ function updateCurrentWeather(temperature, windspead, winddirection, humidity, c
     <p>${time}</p>
     <p>${date}</p>
     `
+    tempurature_message.innerHTML = message;
     current_windspeed.innerHTML = `<p>Wind speed: ${windspead}</p>`
     current_winddirection.innerHTML = `<p>Wind direction: ${winddirection}</p>`
     current_temp.innerHTML = `<p>${temperature}</p>`
     current_humidity.innerHTML = `<p>Humidity: ${humidity}</p>`
     current_conditions.innerHTML = `<p>Conditions: ${conditions}</p>`
+
+    changeTheme(temperature)
 }
 
 //updates the daily weather section using html created in the fetchDailyWeather function
@@ -179,6 +184,45 @@ function howItFeels(temperature) {
     return temperature_feels
 }
 
+function currentWeatherMessage(temperature) {
+    let temperature_message;
+    if (temperature >= 15){
+        temperature_message = "Loose The Layers It's Hot As Sh*t"
+    }
+    else if (temperature >= 0 && temperature <15){
+        temperature_message = "Wow It's Actually tolerable"
+    }
+    else if (temperature > -15 && temperature <=0){
+        temperature_message = "Get a Sweater it F*ckin Chilly"
+    }
+    else if (temperature <= -15){
+        temperature_message = "Bundle Up It's Cold As Sh*t"
+    }
+    else{
+        temperature_message = 'IDK You Check'
+    }
+    return temperature_message
+}
+
+function changeTheme(temperature) {
+    const body = document.getElementById('body');
+    // const topnav = document.getElementById('myTopnav');
+    if (temperature >= 15){
+        body.setAttribute("class", "hot")
+    }
+    else if (temperature >= -15 && temperature <15){
+        body.setAttribute("class", "default")
+    }
+    else if (temperature <= -15){
+        body.setAttribute("class", "freezing")
+    }
+    else{
+        body.setAttribute("class", "default")
+    }
+}
+
+
+
 //this function is run when the user changes the city
 //it runs the all the fetch functions using the API url for that city
 async function changeCityWeather() {
@@ -219,13 +263,13 @@ async function changeCityWeather() {
     //fetches data for prince albert if the user selects prince albert
     else if (cityValue == "prince_albert") {
         current_city.innerHTML = `<p>Prince Albert</p>`
-        fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=53.20&longitude=-105.75&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
+        await fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=53.20&longitude=-105.75&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
 
 
-        fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=53.20&longitude=-105.75&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
+        await fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=53.20&longitude=-105.75&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
 
 
-        fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=53.20&longitude=-105.75&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
+        await fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=53.20&longitude=-105.75&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
 
         content_div .setAttribute("class", "visible")
         warning_div .setAttribute("class", "hidden")
@@ -233,13 +277,13 @@ async function changeCityWeather() {
     //fetches data for moose jaw if the user selects moose jaw
     else if (cityValue == "moose_jaw") {
         current_city.innerHTML = `<p>Moose Jaw</p>`
-        fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=50.39&longitude=-105.53&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
+        await fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=50.39&longitude=-105.53&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
 
 
-        fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.39&longitude=-105.53&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
+        await fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.39&longitude=-105.53&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
 
 
-        fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.39&longitude=-105.53&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
+        await fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.39&longitude=-105.53&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
 
         content_div .setAttribute("class", "visible")
         warning_div .setAttribute("class", "hidden")
@@ -247,13 +291,13 @@ async function changeCityWeather() {
     //fetches data for swift current if the user selects swift current
     else if (cityValue == "swift_current") {
         current_city.innerHTML = `<p>Swift Current</p>`
-        fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=50.28&longitude=-107.79&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
+        await fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=50.28&longitude=-107.79&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
 
 
-        fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.28&longitude=-107.79&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
+        await fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.28&longitude=-107.79&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
 
 
-        fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.28&longitude=-107.79&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
+        await fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=50.28&longitude=-107.79&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
 
         content_div .setAttribute("class", "visible")
         warning_div .setAttribute("class", "hidden")
@@ -261,13 +305,13 @@ async function changeCityWeather() {
     //fetches data for northbattleford if the user selects north battleford
     else if (cityValue == "north_battleford") {
         current_city.innerHTML = `<p>North Battleford</p>`
-        fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=52.77&longitude=-108.29&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
+        await fetchCurrentWeather('https://api.open-meteo.com/v1/forecast?latitude=52.77&longitude=-108.29&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST&hourly=relativehumidity_2m')
 
 
-        fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=52.77&longitude=-108.29&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
+        await fetchDailyWeather('https://api.open-meteo.com/v1/forecast?latitude=52.77&longitude=-108.29&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&current_weather=true&timezone=CST')
 
 
-        fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=52.77&longitude=-108.29&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
+        await fetchHourlyWeather('https://api.open-meteo.com/v1/forecast?latitude=52.77&longitude=-108.29&hourly=temperature_2m,relativehumidity_2m,winddirection_10m,weathercode&timezone=CST');
 
         content_div .setAttribute("class", "visible")
         warning_div .setAttribute("class", "hidden")
